@@ -7,7 +7,7 @@ spec:
   pipelineRef:
     name: yaml-linting-pipeline
   workspaces:
-    - name: shared-workspace   
+    - name: shared-workspace
       volumeClaimTemplate:
         spec:
           accessModes:

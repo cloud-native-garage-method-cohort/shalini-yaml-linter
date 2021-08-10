@@ -1,7 +1,9 @@
 apiVersion: tekton.dev/v1beta1
-kind: Tasksss
+kind: Task
 metadata:
   name: readme
+spec:
+  steps:
     - image: quay.io/ibmgaragecloud/alpine-curl
       name: writeintofile
       resources: {}

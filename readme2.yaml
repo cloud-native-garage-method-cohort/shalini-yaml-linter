@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: Tasksss
+metadata:
+  name: readme
+    - image: quay.io/ibmgaragecloud/alpine-curl
+      name: writeintofile
+      resources: {}
+      script: |
+        echo "writeintofile"
+        echo 'readme yay jksjdkf mkjkj' > readme.txt
+        cat readme.txt
+      

@@ -1,3 +1,4 @@
+--- 
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
@@ -6,8 +7,7 @@ spec:
   pipelineRef:
     name: yaml-linting-pipeline
   workspaces:
-    - name: shared-workspace
-#      
+    - name: shared-workspace     
       volumeClaimTemplate:
         spec:
           accessModes:

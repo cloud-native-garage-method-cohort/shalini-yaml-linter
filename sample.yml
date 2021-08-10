@@ -1,0 +1,36 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  annotations:
+    app.openshift.io/runtime: nodejs
+  name: nodejs-pipeline
+spec:
+  params:
+    - name: source-repo
+      type: string
+      description: Source code repository
+  workspaces:
+    - name: pipeline-shared-data
+      description: |
+        This workspace stores the cloned repository and is available to all steps
+  tasks:
+    - name: clone-repository
+      params:
+        - name: url
+          value: "$(params.source-repo)"
+      taskRef:
+        kind: Task
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: pipeline-shared-data
+    - name: execute-cat-readme
+      runAfter:
+        - clone-repository
+      taskRef:
+        kind: Task
+        name: cat-readme
+      workspaces:
+        - name: output
+          workspace: pipeline-shared-data
